@@ -1,0 +1,7 @@
+Modelos\Conexion.class
+Modelos\Vehiculo.class
+Modelos\Factura.class
+Modelos\TestConexion.class
+Modelos\Persona.class
+Modelos\Servicio.class
+Controladores\ControlProducto.class
