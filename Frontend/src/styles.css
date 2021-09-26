@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 
 body {
-  background-image: url(".. /assets/parking.jpg");
+  background-image: url("../assets/parking.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -10,11 +10,14 @@ body {
   margin: 0;
   padding: 0;
   /* background: rgb(63, 94, 251);
-  background: linear-gradient(
+  background: linear-gradient(git 
     30deg,
     rgba(63, 94, 251, 1) 0%,
     rgba(255, 117, 145, 1) 100%
   ); */
+  height: 100vh;
+}
+.full-height{
   height: 100vh;
 }
 #login .container #login-row #login-column #login-box {
@@ -49,16 +52,14 @@ body {
   width: 130px;
 }
 
-.register{
-  /* background-color: #efefef; */
-}
-
 .outline-box {
   margin: 32px 0;
   padding: 30px;
   border: .5px solid black;
   border-radius: 13px;
-
+  -webkit-box-shadow: 2px 2px 5px #999;
+  -moz-box-shadow: 2px 2px 5px #999;
+  filter: shadow(color=#999999, direction=135, strength=2);
 }
 
 .box{
