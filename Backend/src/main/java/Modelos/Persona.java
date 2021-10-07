@@ -118,7 +118,7 @@ public class Persona {
                          "WHERE ccPersona = ?; "; 
             PreparedStatement stmt; 
             stmt = objConector.conn.prepareStatement(sql); 
-            stmt.setString(5, this.ccPersona);
+            stmt.setString(3, this.ccPersona);
             stmt.setString(1, this.nombrePersona);
             stmt.setString(2, this.apellidoPersona);
                         

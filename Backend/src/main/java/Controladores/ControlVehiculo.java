@@ -5,6 +5,7 @@
  */
 package Controladores;
 
+import Modelos.Vehiculo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,6 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ControlVehiculo", urlPatterns = {"/ControlVehiculo"})
 public class ControlVehiculo extends HttpServlet {
+    
+    Vehiculo objVehiculo = new Vehiculo(); 
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,17 +37,85 @@ public class ControlVehiculo extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ControlVehiculo</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ControlVehiculo at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+           
+            
+            String accion = request.getParameter("btnAccion"); 
+            
+            if(accion.equals("Insertar")){
+                
+                String placaVehiculo = request.getParameter("placaVehiculo"); 
+                String modeloVehiculo = request.getParameter("modeloVehiculo"); 
+                                             
+                objVehiculo.setPlacaVehiculo(placaVehiculo);
+                objVehiculo.setModeloVehiculo(modeloVehiculo);
+                                              
+                objVehiculo.crearVehiculo();
+                
+                String mensaje = "<html> <body>"+
+                                 " <script type='text/javaScript'> "+
+                                 "      alert('El Vehiculo fue creado correctamente!'); "+
+                                 "      window.location.href='index.jsp'"+
+                                 "</script> </body> </html>"; 
+                
+                out.println(mensaje);
+            }
+            else if (accion.equals("Actualizar")){
+                
+                String placaVehiculo = request.getParameter("placaVehiculo"); 
+                String modeloVehiculo = request.getParameter("modeloVehiculo"); 
+                
+                objVehiculo.setPlacaVehiculo(placaVehiculo);
+                objVehiculo.setModeloVehiculo(modeloVehiculo);
+                
+                              
+                
+                objVehiculo.actualizarVehiculo();
+                
+                                
+                String mensaje = "<html> <body>"+
+                                 " <script type='text/javaScript'> "+
+                                 "      alert('El Vehiculo fue actualizado correctamente!'); "+
+                                 "      window.location.href='index.jsp'"+
+                                 "</script> </body> </html>"; 
+                
+                out.println(mensaje);
+            }
+            
+            else if (accion.equals("Eliminar")){
+                
+                         
+                String placaVehiculo = request.getParameter("placaVehiculo"); 
+                                                        
+                String respuesta = objVehiculo.eliminarVehiculo();
+                
+                if (respuesta == null){
+                    String mensaje = "<html> <body>"+
+                                 " <script type='text/javaScript'> "+
+                                 "      alert('El Vehiculo fue eliminado correctamente!'); "+
+                                 "      window.location.href='index.jsp'"+
+                                 "</script> </body> </html>"; 
+                
+                    out.println(mensaje);
+                }
+                else {
+                    String mensaje = "<html> <body>"+
+                                 " <script type='text/javaScript'> "+
+                                 "      alert('Error en la eliminación del Vehiculo'); "+
+                                 "      window.location.href='index.jsp'"+
+                                 "</script> </body> </html>"; 
+                
+                    out.println(mensaje);
+                }
+                
+            }
+           
+        }
+        catch(Exception error){
+            System.out.println("Error Controlador: "+ error);
         }
     }
+        
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
