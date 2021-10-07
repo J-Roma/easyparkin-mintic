@@ -61,7 +61,7 @@ public class ControlPersona extends HttpServlet {
                 String mensaje = "<html> <body>"+
                                  " <script type='text/javaScript'> "+
                                  "      alert('Registro de la Persona creado correctamente!'); "+
-                                 "      window.location.href='index.jsp'"+
+                                 "      window.location.href='register.html'"+
                                  "</script> </body> </html>"; 
                 
                 out.println(mensaje);
@@ -84,7 +84,7 @@ public class ControlPersona extends HttpServlet {
                 String mensaje = "<html> <body>"+
                                  " <script type='text/javaScript'> "+
                                  "      alert('Registro de la Persona actualizado correctamente!'); "+
-                                 "      window.location.href='index.jsp'"+
+                                 "      window.location.href='register.html'"+
                                  "</script> </body> </html>"; 
                 
                 out.println(mensaje);
@@ -93,20 +93,16 @@ public class ControlPersona extends HttpServlet {
             else if (accion.equals("Eliminar")){
                 
                 String ccPersona = request.getParameter("ccPersona"); 
-                
-                
-                
+                         
                 objPersona.setCcPersona(ccPersona);
-                             
-                             
-                           
+                                            
                 String respuesta = objPersona.eliminarPersona();
                 
                 if (respuesta == null){
                     String mensaje = "<html> <body>"+
                                  " <script type='text/javaScript'> "+
                                  "      alert('Registro de la Persona eliminado correctamente!'); "+
-                                 "      window.location.href='index.jsp'"+
+                                 "      window.location.href='register.html'"+
                                  "</script> </body> </html>"; 
                 
                     out.println(mensaje);
@@ -115,7 +111,7 @@ public class ControlPersona extends HttpServlet {
                     String mensaje = "<html> <body>"+
                                  " <script type='text/javaScript'> "+
                                  "      alert('Error en la eliminación del registro'); "+
-                                 "      window.location.href='index.jsp'"+
+                                 "      window.location.href='register.html'"+
                                  "</script> </body> </html>"; 
                 
                     out.println(mensaje);

@@ -5,9 +5,12 @@
  */
 package Controladores;
 
+import Modelos.Persona;
 import Modelos.Vehiculo;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -115,7 +118,51 @@ public class ControlVehiculo extends HttpServlet {
         }
     }
         
+    public ArrayList listar(){
+        try {
+            ResultSet consulta = objVehiculo.listarVehiculo(); 
+            ArrayList<Vehiculo> listaVehiculo = new ArrayList<>(); 
+            
+            while(consulta.next()){
+                objVehiculo = new Vehiculo(); 
+                objVehiculo.setPlacaVehiculo(consulta.getString(1));
+                objVehiculo.setModeloVehiculo(consulta.getString(2));
+                
+                                           
+                listaVehiculo.add(objVehiculo); 
+            }
+            
+            return listaVehiculo; 
+            
+        } catch (Exception error) {
+            System.out.println("Error Controlador:" + error);
+        }
+ 
+        return null;
+    }
     
+    
+    public ArrayList consultar(String placaVehiculo){
+        try {
+            objVehiculo.setPlacaVehiculo(placaVehiculo);
+            ResultSet consulta = objVehiculo.consultarVehiculo(); 
+            ArrayList<Vehiculo> listaVehiculo = new ArrayList<>(); 
+                                 
+            while(consulta.next()){
+                objVehiculo = new Vehiculo(); 
+                objVehiculo.setPlacaVehiculo(consulta.getString(1));
+                objVehiculo.setModeloVehiculo(consulta.getString(2));
+                listaVehiculo.add(objVehiculo); 
+            }
+            
+            return listaVehiculo; 
+            
+        } catch (Exception error) {
+            System.out.println("Error Controlador:" + error);
+        }
+ 
+        return null;
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
