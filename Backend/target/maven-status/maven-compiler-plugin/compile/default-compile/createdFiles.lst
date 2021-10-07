@@ -3,5 +3,8 @@ Modelos\Vehiculo.class
 Modelos\Factura.class
 Modelos\TestConexion.class
 Modelos\Persona.class
+Controladores\ControlVehiculo.class
 Modelos\Servicio.class
+Controladores\ControlPersona.class
+Controladores\ControlFactura.class
 Controladores\ControlProducto.class

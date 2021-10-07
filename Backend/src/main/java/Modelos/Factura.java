@@ -77,6 +77,9 @@ public class Factura {
 
     //METODOS
     public void crearFactura() {
+        
+        
+        
     }
     
     public void consultarFactura(){

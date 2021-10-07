@@ -1,6 +1,9 @@
 
 package Modelos;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 public class Persona {
     //ATRIBUTOS
     private String ccPersona;
@@ -39,21 +42,114 @@ public class Persona {
     //METODOS
     public void crearPersona(){
         
+        Conexion objConector = new Conexion(); 
+        objConector.conectar();
+        
+        try {
+            
+            String sql = "INSERT INTO persona VALUES(?,?,?);";
+            PreparedStatement stmt; 
+            stmt = objConector.conn.prepareStatement(sql); 
+            stmt.setString(1, this.ccPersona);
+            stmt.setString(2, this.nombrePersona);
+            stmt.setString(3, this.apellidoPersona);
+                        
+            stmt.execute(); 
+            
+            objConector.desconectar();
+        } catch (Exception error) {
+            System.out.println("Error Modelo: "+error);
+        }
+        
     }
     
-    public void consultarPersona(){
+    public ResultSet consultarPersona(){
+        Conexion objConector = new Conexion(); 
+        objConector.conectar();
+        
+        try {
+            
+            String sql = "SELECT * FROM persona WHERE codigoProducto = ? ; ";
+            PreparedStatement stmt; 
+            stmt = objConector.conn.prepareStatement(sql); 
+            stmt.setString(1, this.ccPersona);
+            ResultSet consulta = stmt.executeQuery(); 
+            objConector.desconectar();
+            return consulta; 
+            
+        } catch (Exception error) {
+            System.out.println("Error Modelo: "+error);
+        }
+ 
+        return null;
     
     }
     
-    public void listarPersona(){
+    public ResultSet listarPersona(){
+        Conexion objConector = new Conexion(); 
+        objConector.conectar();
+        
+        try {
+            
+            String sql = "SELECT * FROM persona; ";
+            PreparedStatement stmt; 
+            stmt = objConector.conn.prepareStatement(sql); 
+            ResultSet consulta = stmt.executeQuery(); 
+            objConector.desconectar();
+            return consulta; 
+            
+        } catch (Exception error) {
+            System.out.println("Error Modelo: "+error);
+        }
+ 
+        return null;
         
     }
     
     public void actualizarPersona(){
+        Conexion objConector = new Conexion(); 
+        objConector.conectar();
         
+        try {
+            
+            String sql = "UPDATE persona SET "+
+                         "nombrePersona = ?, "+
+                         "apellidoPersona = ?, "+
+                         "WHERE ccPersona = ?; "; 
+            PreparedStatement stmt; 
+            stmt = objConector.conn.prepareStatement(sql); 
+            stmt.setString(5, this.ccPersona);
+            stmt.setString(1, this.nombrePersona);
+            stmt.setString(2, this.apellidoPersona);
+                        
+            stmt.execute(); 
+            
+            objConector.desconectar();
+        } catch (Exception error) {
+            System.out.println("Error Modelo: "+error);
+        }
     }
     
-    public void eliminarPersona(){
+    public String eliminarPersona(){
+        Conexion objConector = new Conexion(); 
+        objConector.conectar();
+        
+        try {
+            
+            String sql = "DELETE FROM persona "+
+                         "WHERE ccPersona = ?; "; 
+            PreparedStatement stmt; 
+            stmt = objConector.conn.prepareStatement(sql); 
+            stmt.setString(1, this.ccPersona);
+            
+            stmt.execute(); 
+            
+            objConector.desconectar();
+        } catch (Exception error) {
+            System.out.println("Error Modelo: "+error);
+            return error.toString(); 
+        }
+        return null; 
         
     }
 }

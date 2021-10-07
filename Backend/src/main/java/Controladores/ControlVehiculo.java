@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author LORENT
  */
-@WebServlet(name = "ControlFactura", urlPatterns = {"/ControlFactura"})
-public class ControlFactura extends HttpServlet {
+@WebServlet(name = "ControlVehiculo", urlPatterns = {"/ControlVehiculo"})
+public class ControlVehiculo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,14 +34,13 @@ public class ControlFactura extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ControlFactura</title>");            
+            out.println("<title>Servlet ControlVehiculo</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ControlFactura at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ControlVehiculo at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
